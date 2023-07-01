@@ -6,5 +6,7 @@ public class CarManager {
         System.out.println("Car Manager");
         System.out.println("dit");
         System.out.println("lo mao");
+        //thang vu dai duong ngu vl?
+        //Nam Anh fuck boi
     }
 }
