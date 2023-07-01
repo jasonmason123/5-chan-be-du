@@ -21,15 +21,13 @@ public class BrandList extends ArrayList<Brand> {
 
         String soundBrand = "The sound brand is not blank";
 
-        double price=0;//??
-        //dang sua doan nay.
-        if (brandName.isEmpty() || soundBrand.isEmpty() || price <= 0) {
+        if (brandName.isEmpty() || soundBrand.isEmpty() || get(pos).getPrice() <= 0) {
             System.out.println("Invalid input! The brand name, sound brand, and price must not be blank, and the price must be greater than 0.");
         } else {
             Brand brand = get(pos);
             brand.setBrandName(brandName);
             brand.setSoundBrand(soundBrand);
-            brand.setPrice(price);
+            brand.setPrice(get(pos).getPrice());
 
             System.out.println("Brand updated successfully.");
         }
