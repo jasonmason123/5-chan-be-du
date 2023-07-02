@@ -17,11 +17,16 @@ public class Inputter {
     }
     
     public double inputPrice() {
-        Scanner sc = new Scanner(System.in);
         double price;
         do {
-            System.out.println("(*)Please input price: ");
-            price = sc.nextDouble();
+            try{
+                System.out.println("(*)Please input price: ");
+                Scanner sc = new Scanner(System.in);
+                price = sc.nextDouble();
+            }
+            catch (Exception e) {
+                price = -1;
+            }    
         } while (price < 0);
         return price;
     }
