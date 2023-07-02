@@ -20,8 +20,8 @@ public class CarManager {
 //            System.out.println(br);
 //        }
 //        Brlst.loadBrands("someshitwhat.txt");
-        for (Brand br: Brlst) {
-            System.out.println(br);
-        }
+//        Brlst.loadBrands("experiment.txt");
+//        Brlst.listBrands();
+//        Brlst.searchID("B7-2018");
     }
 }
