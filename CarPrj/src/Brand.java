@@ -30,7 +30,7 @@ public class Brand {
     }
 
     public void setBrandName(String brandName) {
-        this.brandName = brandName;
+        if(brandName.trim().isEmpty() == false) this.brandName = brandName;
     }
 
     public String getSoundBrand() {
@@ -38,7 +38,7 @@ public class Brand {
     }
 
     public void setSoundBrand(String soundBrand) {
-        this.soundBrand = soundBrand;
+        if(soundBrand.trim().isEmpty() == false) this.soundBrand = soundBrand;
     }
 
     public double getPrice() {
@@ -46,12 +46,12 @@ public class Brand {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price >=0) this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Brand{" + "BrandID=" + BrandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ": price=" + price + '}';
+        return "BrandID=" + BrandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ": price=" + price;
     }
     
     

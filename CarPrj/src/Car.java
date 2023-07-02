@@ -33,7 +33,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void setColor(String color) {
-        this.color = color;
+        if(color.trim().isEmpty() == false) this.color = color;
     }
 
     public String getFrameID() {
@@ -41,7 +41,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void setFrameID(String frameID) {
-        this.frameID = frameID;
+        if(frameID.trim().isEmpty() == false) this.frameID = frameID;
     }
 
     public String getEngineID() {
@@ -49,7 +49,7 @@ public class Car implements Comparable<Car> {
     }
 
     public void setEngineID(String engineID) {
-        this.engineID = engineID;
+        if(engineID.trim().isEmpty() == false) this.engineID = engineID;
     }
 
     public Brand getBrand() {
