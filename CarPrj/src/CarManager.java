@@ -9,11 +9,11 @@ public class CarManager {
         
         Brlst.addBrand();
         Brlst.addBrand();
-    //(*)Sơn: updateBrand() test fail. Thieu cho nhap vao brandID
+//(*)Sơn: updateBrand() test fail. Thieu cho nhap vao brandID
         Brlst.updateBrand();
         
         System.out.println(Brlst);
-    //(*)Sơn: getUserChoice test success
+//(*)Sơn: getUserChoice test success
         System.out.println(Brlst.getUserChoice());
     }
 }

@@ -35,7 +35,7 @@ public class BrandList extends ArrayList<Brand> {
         }
     }
     
-    //(*)Sơn: Check brandID co bi lap hay khong
+//(*)Sơn: Check brandID co bi lap hay khong
     public boolean codeNotDuplicated(String code) {
         code = code.trim().toUpperCase();
         return searchID(code) != -1;
@@ -72,7 +72,7 @@ public class BrandList extends ArrayList<Brand> {
         }
     }
     
-    //(!)Dương: updateCar khi update Brand sẽ sử dụng hàm này
+//(!)Dương: updateCar khi update Brand sẽ sử dụng hàm này
     public Brand getUserChoice() {
         Menu mn = new Menu();
         Brand result = (Brand)mn.ref_getChoice(this);

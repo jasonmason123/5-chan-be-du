@@ -18,6 +18,6 @@ public class Menu {
         do {
             response = int_getChoice(options);
         } while (response < 0 || response > options.size());
-        return options.get(response-1);
+        return options.get(response - 1);
     }
 }
