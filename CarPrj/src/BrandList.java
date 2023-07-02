@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 import java.lang.*;
 
@@ -77,6 +78,41 @@ public class BrandList extends ArrayList<Brand> {
         Menu mn = new Menu();
         Brand result = (Brand)mn.ref_getChoice(this);
         return result;
+    }
+    
+    public void saveBrands(String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Brand brand : this) {
+                String line = brand.getBrandID() + "," + brand.getBrandName() + ","
+                        + brand.getSoundBrand() + "," + brand.getPrice();
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving brands: " + e.getMessage());
+        }
+    }
+
+    public List<Brand> loadBrands(String filePath) {
+        List<Brand> brands = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String id = data[0];
+                String name = data[1];
+                String soundBrand = data[2];
+                double price = Double.parseDouble(data[3]);
+
+                Brand brand = new Brand(id, name, soundBrand, price);
+                brands.add(brand);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while loading brands: " + e.getMessage());
+        }
+
+        return brands;
     }
 }
 
