@@ -17,7 +17,7 @@ public class BrandList extends ArrayList<Brand> {
 //(!)Thắng: thiếu hàm để in ra brand mà người dùng đang search
 //tmt: tôi tưởng nó chỉ yêu cầu in ra vị trí thôi chứ
 
-    public void updateBrand(String brandID) {
+    public void updateBrand(String brandID) {//tmt
         int pos = searchID(brandID);
         
         if (pos < 0) {
