@@ -1,10 +1,14 @@
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.util.Collection;
+import java.util.List;
 
 public class CarList extends ArrayList<Car> {
 
     public int searchID(String carID) {
+
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).getCarID().equals(carID)) {
                 return i;
@@ -12,7 +16,25 @@ public class CarList extends ArrayList<Car> {
         }
         return -1;
     }
-    
+
+    public int searchFrame(String fID) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getFrameID().equals(fID)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int searchEngine(String eID) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getEngineID().equals(eID)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void saveCars(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Car car : this) {
@@ -51,5 +73,15 @@ public class CarList extends ArrayList<Car> {
         }
 
         return cars;
+    }
+
+    public void listCars() {
+        Collections.sort(this);
+        int size = this.size();
+        for (int i = 0; i < size; i++) {
+            Car c = this.get(i);
+            System.out.println(c.screenString());
+        }
+
     }
 }

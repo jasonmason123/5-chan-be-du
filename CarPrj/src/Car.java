@@ -1,5 +1,6 @@
 import java.util.*;
 import java.lang.*;
+import java.util.Collections;
 
 public class Car implements Comparable<Car> {
     
@@ -59,6 +60,8 @@ public class Car implements Comparable<Car> {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -70,8 +73,8 @@ public class Car implements Comparable<Car> {
     }
 
     @Override
-    public int compareTo(Car o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int compareTo(Car otherCar) {
+       return this.brand.compareTo(otherCar.getBrand());
     }
 
 }
