@@ -12,59 +12,75 @@ public class BrandList extends ArrayList<Brand> {
                 return brand;
             }
         }
-        System.out.println("Brand not found.");
         return null; // Brand not found
+    }
+    
+    public void searchByID() {
+        Inputter inp = new Inputter();
+        System.out.println("Input the ID of the brand that needs to be found:");
+        Brand result = searchID(inp.inputNotBlank());
+        if (result == null) System.out.println("(!)Brand not found!");
+        else System.out.println(result);
     }
 
     //tmt
     public void updateBrand() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
+        Inputter inp = new Inputter();
         // Receive brandID
-        System.out.print("Enter the brand ID: ");
-        String brandID = scanner.nextLine();
+        System.out.print("Enter the brand ID:\n");
+        String brandID = inp.inputNotBlank();
 
         // Pos = searchID(brandID);
         Brand pos = searchID(brandID);
 
         if (pos == null) {
-            System.out.println("Brand not found!");
+            System.out.println("(!)Brand not found!");
         } else {
-            String brandName = "The brand name is not blank";
-            String soundBrand = "The sound brand is not blank";
+            System.out.println("New brand name:");
+            String brandName = inp.inputNotBlank();
+            pos.setBrandName(brandName);
+            System.out.println("New sound brand name:");
+            String soundBrand = inp.inputNotBlank();
+            pos.setSoundBrand(soundBrand);
+            System.out.println("New price:");
+            double Price = inp.inputPrice();
+            pos.setPrice(Price);
+            System.out.println("Update successful!");
 
-            if (brandName.isEmpty() || soundBrand.isEmpty() || pos.getPrice() <= 0) {
-                System.out.println("Invalid input! The brand name, sound brand, and price must not be blank, and the price must be greater than 0.");
-            } else {
-                System.out.print("Enter the new brand name: ");
-                brandName = scanner.nextLine();
-                // The brand name is not blank
-                if (!brandName.isEmpty()) {
-                    pos.setBrandName(brandName);
-                }
-
-                // Receive new soundBrand
-                System.out.print("Enter the new sound brand: ");
-                soundBrand = scanner.nextLine();
-                // The sound brand is not blank
-                if (!soundBrand.isEmpty()) {
-                    pos.setSoundBrand(soundBrand);
-                }
-
-                // Receive new price
-                System.out.print("Enter the new price: ");
-                double price = scanner.nextDouble();
-                // Price > 0
-                if (price > 0) {
-                    pos.setPrice(price);
-                }
-            }
+//            if (brandName.isEmpty() || soundBrand.isEmpty() || pos.getPrice() <= 0) {
+//                System.out.println("Invalid input! The brand name, sound brand, and price must not be blank, and the price must be greater than 0.");
+//            } else {
+//                System.out.print("Enter the new brand name: ");
+//                brandName = scanner.nextLine();
+//                // The brand name is not blank
+//                if (!brandName.isEmpty()) {
+//                    pos.setBrandName(brandName);
+//                }
+//
+//                // Receive new soundBrand
+//                System.out.print("Enter the new sound brand: ");
+//                soundBrand = scanner.nextLine();
+//                // The sound brand is not blank
+//                if (!soundBrand.isEmpty()) {
+//                    pos.setSoundBrand(soundBrand);
+//                }
+//
+//                // Receive new price
+//                System.out.print("Enter the new price: ");
+//                double price = scanner.nextDouble();
+//                // Price > 0
+//                if (price > 0) {
+//                    pos.setPrice(price);
+//                }
+//            }
         }
     }
 
 //(*)Sơn: Check brandID co bi lap hay khong
     public boolean codeNotDuplicated(String code) {
         code = code.trim().toUpperCase();
-        return searchID(code) != -1;
+        return searchID(code) != null;
     }
 
     public void addBrand() {

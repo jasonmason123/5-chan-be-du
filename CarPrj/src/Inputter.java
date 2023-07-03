@@ -10,7 +10,7 @@ public class Inputter {
         Scanner sc = new Scanner(System.in);
         String brandName;
         do {
-            System.out.println("(*)Please input name: ");
+            System.out.println("(*)Please input:");
             brandName = sc.nextLine().trim();
         } while (brandName.isEmpty() == true);
         return brandName;
