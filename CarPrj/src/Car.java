@@ -1,14 +1,16 @@
+
 import java.util.*;
 import java.lang.*;
 import java.util.Collections;
 
 public class Car implements Comparable<Car> {
-    
+
     private String CarID,
-    color,
-    frameID,
-    engineID;
-    Brand brand;
+            color,
+            frameID,
+            engineID;
+            Brand brand;
+            List<Car> cars;
 
     public Car() {
     }
@@ -34,7 +36,9 @@ public class Car implements Comparable<Car> {
     }
 
     public void setColor(String color) {
-        if(color.trim().isEmpty() == false) this.color = color;
+        if (color.trim().isEmpty() == false) {
+            this.color = color;
+        }
     }
 
     public String getFrameID() {
@@ -42,7 +46,9 @@ public class Car implements Comparable<Car> {
     }
 
     public void setFrameID(String frameID) {
-        if(frameID.trim().isEmpty() == false) this.frameID = frameID;
+        if (frameID.trim().isEmpty() == false) {
+            this.frameID = frameID;
+        }
     }
 
     public String getEngineID() {
@@ -50,7 +56,9 @@ public class Car implements Comparable<Car> {
     }
 
     public void setEngineID(String engineID) {
-        if(engineID.trim().isEmpty() == false) this.engineID = engineID;
+        if (engineID.trim().isEmpty() == false) {
+            this.engineID = engineID;
+        }
     }
 
     public Brand getBrand() {
@@ -60,21 +68,51 @@ public class Car implements Comparable<Car> {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-    
-    
+
+    public Car searchID(String carID) {
+        for (Car car : cars) {
+            if (car.getCarID().equals(carID)) {
+                return car;
+            }
+        }
+        System.out.println("Car not found by ID.");
+        return null;
+    }
+    public Car searchFrame(String fID) {
+    for (Car car : cars) {
+        if (car.getFrameID().equals(fID)) {
+            return car;
+        }
+    }
+    System.out.println("Car not found by Frame");
+    return null;
+}
+    public Car searchEngine(String eID) {
+    for (Car car : cars){
+        if (car.getEngineID().equals(eID)) {
+            return car;
+        }
+    }
+        System.out.println("Car not found by Engine");
+    return null;
+}
 
     @Override
     public String toString() {
         return "Car{" + "CarID=" + CarID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
     }
-    
+
     public String screenString() {
         return CarID + brand.getBrandID() + color + frameID + engineID;
     }
 
     @Override
     public int compareTo(Car otherCar) {
-       return this.brand.compareTo(otherCar.getBrand());
+        int d = this.getBrand().getBrandName().compareTo(otherCar.getBrand().getBrandName());
+        if (d != 0) {
+            return d;
+        }
+        return this.getCarID().compareTo(otherCar.getCarID());
     }
 
 }
