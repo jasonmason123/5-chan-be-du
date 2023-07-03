@@ -5,36 +5,58 @@ import java.lang.*;
 
 public class BrandList extends ArrayList<Brand> {
 
-    public int searchID(String bID) {
-        for (int i = 0; i < this.size() - 1; i++) {
-            if (this.get(i).getBrandID().equals(bID)) {
-                System.out.println("The position in the brand list of the searched brand: ");
-                return i;
+    //tmt
+    public Brand searchID(String bID) {
+        for (Brand brand : this) {
+            if (brand.getBrandID().equals(bID)) {
+                return brand;
             }
         }
-        return -1;
+        System.out.println("Brand not found.");
+        return null; // Brand not found
     }
-//(!)Thắng: thiếu hàm để in ra brand mà người dùng đang search
-//tmt: tôi tưởng nó chỉ yêu cầu in ra vị trí thôi chứ
 
-    public void updateBrand(String brandID) {//tmt
-        int pos = searchID(brandID);
-        
-        if (pos < 0) {
+    //tmt
+    public void updateBrand() {
+        Scanner scanner = new Scanner(System.in);
+        // Receive brandID
+        System.out.print("Enter the brand ID: ");
+        String brandID = scanner.nextLine();
+
+        // Pos = searchID(brandID);
+        Brand pos = searchID(brandID);
+
+        if (pos == null) {
             System.out.println("Brand not found!");
         } else {
             String brandName = "The brand name is not blank";
             String soundBrand = "The sound brand is not blank";
 
-            if (brandName.isEmpty() || soundBrand.isEmpty() || get(pos).getPrice() <= 0) {
+            if (brandName.isEmpty() || soundBrand.isEmpty() || pos.getPrice() <= 0) {
                 System.out.println("Invalid input! The brand name, sound brand, and price must not be blank, and the price must be greater than 0.");
             } else {
-                Brand brand = get(pos);
-                brand.setBrandName(brandName);
-                brand.setSoundBrand(soundBrand);
-                brand.setPrice(get(pos).getPrice());
+                System.out.print("Enter the new brand name: ");
+                brandName = scanner.nextLine();
+                // The brand name is not blank
+                if (!brandName.isEmpty()) {
+                    pos.setBrandName(brandName);
+                }
 
-                System.out.println("Brand updated successfully.");
+                // Receive new soundBrand
+                System.out.print("Enter the new sound brand: ");
+                soundBrand = scanner.nextLine();
+                // The sound brand is not blank
+                if (!soundBrand.isEmpty()) {
+                    pos.setSoundBrand(soundBrand);
+                }
+
+                // Receive new price
+                System.out.print("Enter the new price: ");
+                double price = scanner.nextDouble();
+                // Price > 0
+                if (price > 0) {
+                    pos.setPrice(price);
+                }
             }
         }
     }
