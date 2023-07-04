@@ -45,7 +45,7 @@ public class CarList extends ArrayList<Car> {
     public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("cars.txt"))) {
             for (Car car : this) {
-                String line = car.getCarID() + "," + car.getBrand().getBrandID() + "," + car.getColor() + "," + car.getFrameID() + "," + car.getEngineID();
+                String line = car.getCarID() + ", " + car.getBrand().getBrandID() + ", " + car.getColor() + ", " + car.getFrameID() + ", " + car.getEngineID();
                 writer.write(line);
                 writer.newLine();
             }
@@ -63,7 +63,7 @@ public class CarList extends ArrayList<Car> {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(", ");
                 String carID = parts[0];
                 String brandID = parts[1];
                 String color = parts[2];

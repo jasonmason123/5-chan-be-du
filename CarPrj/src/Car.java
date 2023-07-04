@@ -114,7 +114,7 @@ public class Car implements Comparable<Car> {
         try (BufferedReader reader = new BufferedReader(new FileReader("cars.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(", ");
                 String loadedCarID = parts[0];
                 String brandID = parts[1];
                 String color = parts[2];
@@ -134,7 +134,7 @@ public class Car implements Comparable<Car> {
     }
     @Override
     public String toString() {
-        return "Car{" + "CarID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
+        return "CarID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID;
     }
 
     public String screenString() {

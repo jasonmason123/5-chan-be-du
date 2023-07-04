@@ -127,7 +127,7 @@ public class BrandList extends ArrayList<Brand> {
         String filePath = projectDirectory + File.separator + "brands.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Brand brand : this) {
-                String line = brand.getBrandID() + "," + brand.getBrandName() + "," + brand.getSoundBrand() + "," + brand.getPrice();
+                String line = brand.getBrandID() + ", " + brand.getBrandName() + ", " + brand.getSoundBrand() + ", " + brand.getPrice();
                 writer.write(line);
                 writer.newLine();
             }
@@ -145,7 +145,7 @@ public class BrandList extends ArrayList<Brand> {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(", ");
                 String id = parts[0];
                 String brandName = parts[1];
                 String soundBrand = parts[2];

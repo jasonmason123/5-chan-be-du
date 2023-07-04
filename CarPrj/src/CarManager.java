@@ -20,10 +20,7 @@ public class CarManager {
         if (loadedBrandList != null) {
             System.out.println("Loaded Brands:");
             for (Brand brand : loadedBrandList) {
-                System.out.println("ID: " + brand.getBrandID());
-                System.out.println("Brand Name: " + brand.getBrandName());
-                System.out.println("Sound Brand: " + brand.getSoundBrand());
-                System.out.println("Price: " + brand.getPrice());
+                System.out.println(brand);
                 System.out.println("------------------");
             }
         }
@@ -46,14 +43,13 @@ public class CarManager {
         if (loadedCarList != null) {
             System.out.println("Loaded Cars:");
             for (Car car : loadedCarList) {
-                System.out.println("Car ID: " + car.getCarID());
-                System.out.println("Brand ID: " + car.getBrand().getBrandID());
-                System.out.println("Color: " + car.getColor());
-                System.out.println("Frame ID: " + car.getFrameID());
-                System.out.println("Engine ID: " + car.getEngineID());
+                System.out.println(car);
                 System.out.println("------------------");
             }
         }
+        
+        Car cr = Car.load("1");
+        System.out.println(cr);
    }
 //        Brlst.addBrand();
 //        Brlst.addBrand();
