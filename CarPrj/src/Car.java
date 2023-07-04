@@ -1,11 +1,13 @@
-
 import java.util.*;
-import java.lang.*;
-import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Car implements Comparable<Car> {
 
-    private String CarID,
+    private String carID,
             color,
             frameID,
             engineID;
@@ -15,8 +17,8 @@ public class Car implements Comparable<Car> {
     public Car() {
     }
 
-    public Car(String CarID, Brand brand, String color, String frameID, String engineID) {
-        this.CarID = CarID;
+    public Car(String carID, Brand brand, String color, String frameID, String engineID) {
+        this.carID = carID;
         this.brand = brand;
         this.color = color;
         this.frameID = frameID;
@@ -24,11 +26,11 @@ public class Car implements Comparable<Car> {
     }
 
     public String getCarID() {
-        return CarID;
+        return carID;
     }
 
     public void setCarID(String CarID) {
-        this.CarID = CarID;
+        this.carID = CarID;
     }
 
     public String getColor() {
@@ -96,14 +98,47 @@ public class Car implements Comparable<Car> {
         System.out.println("Car not found by Engine");
     return null;
 }
+    public void save() {
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/cars.txt";
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            String line = carID + "," + brand.getBrandID() + "," + color + "," + frameID + "," + engineID;
+            writer.write(line);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving car: " + e.getMessage());
+        }
+    }
+
+    public static Car load(String carID) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("cars.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String loadedCarID = parts[0];
+                String brandID = parts[1];
+                String color = parts[2];
+                String frameID = parts[3];
+                String engineID = parts[4];
+
+                if (loadedCarID.equals(carID)) {
+                    Brand brand = Brand.load(brandID);
+                    return new Car(loadedCarID, brand, color, frameID, engineID);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while loading cars: " + e.getMessage());
+        }
+
+        return null; // Car not found
+    }
     @Override
     public String toString() {
-        return "Car{" + "CarID=" + CarID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
+        return "Car{" + "CarID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
     }
 
     public String screenString() {
-        return CarID + brand.getBrandID() + color + frameID + engineID;
+        return carID + brand.getBrandID() + color + frameID + engineID;
     }
 
     @Override

@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*;
 
 public class Menu {
     public int int_getChoice (ArrayList options) {

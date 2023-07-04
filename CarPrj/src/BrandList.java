@@ -1,7 +1,6 @@
 
 import java.io.*;
 import java.util.*;
-import java.lang.*;
 
 public class BrandList extends ArrayList<Brand> {
 
@@ -110,8 +109,8 @@ public class BrandList extends ArrayList<Brand> {
         if (this.isEmpty() == true) {
             System.out.println("Brand list is empty!");
         } else {
-            for (Brand br : this) {
-                System.out.println(br);
+            for (Brand brand : this) {
+                System.out.println(brand);
             }
         }
     }
@@ -122,12 +121,13 @@ public class BrandList extends ArrayList<Brand> {
         Brand result = (Brand) mn.ref_getChoice(this);
         return result;
     }
-
-    public void saveBrands(String filePath) {
+    
+    public void save() {
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/brands.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Brand brand : this) {
-                String line = brand.getBrandID() + "," + brand.getBrandName() + ","
-                        + brand.getSoundBrand() + "," + brand.getPrice();
+                String line = brand.getBrandID() + "," + brand.getBrandName() + "," + brand.getSoundBrand() + "," + brand.getPrice();
                 writer.write(line);
                 writer.newLine();
             }
@@ -136,25 +136,28 @@ public class BrandList extends ArrayList<Brand> {
         }
     }
 
-    public List<Brand> loadBrands(String filePath) {
-        List<Brand> brands = new ArrayList<>();
+    public static BrandList load() {
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/brands.txt";
+        BrandList brandList = new BrandList();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                String id = data[0];
-                String name = data[1];
-                String soundBrand = data[2];
-                double price = Double.parseDouble(data[3]);
+                String[] parts = line.split(",");
+                String id = parts[0];
+                String brandName = parts[1];
+                String soundBrand = parts[2];
+                double price = Double.parseDouble(parts[3]);
 
-                Brand brand = new Brand(id, name, soundBrand, price);
-                brands.add(brand);
+                Brand brand = new Brand(id, brandName, soundBrand, price);
+                brandList.add(brand);
             }
         } catch (IOException e) {
             System.out.println("Error occurred while loading brands: " + e.getMessage());
+            return null;
         }
 
-        return brands;
+        return brandList;
     }
 }

@@ -1,9 +1,6 @@
 
-import java.util.*;
-import java.lang.*;
 import java.io.*;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class CarList extends ArrayList<Car> {
 
@@ -35,46 +32,6 @@ public class CarList extends ArrayList<Car> {
         return -1;
     }
 
-    public void saveCars(String filePath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Car car : this) {
-                String line = car.getCarID() + "," + car.getBrand().getBrandID() + ","
-                        + car.getColor() + "," + car.getFrameID() + "," + car.getEngineID();
-                writer.write(line);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Error occurred while saving cars: " + e.getMessage());
-        }
-    }
-
-    public List<Car> loadCars(String filePath) {
-        List<Car> cars = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-                String id = data[0];
-                String brandID = data[1];
-                String brandName = data[2];
-                String soundBrand = data[3];
-                double price = Float.parseFloat(data[4]);
-                Brand brand = new Brand(brandID, brandName, soundBrand, price);
-                String color = data[5];
-                String frameId = data[6];
-                String engineId = data[7];
-
-                Car car = new Car(id, brand, color, frameId, engineId);
-                cars.add(car);
-            }
-        } catch (IOException e) {
-            System.out.println("Error occurred while loading cars: " + e.getMessage());
-        }
-
-        return cars;
-    }
-
     public void listCars() {
         Collections.sort(this);
         int size = this.size();
@@ -83,5 +40,49 @@ public class CarList extends ArrayList<Car> {
             System.out.println(c.screenString());
         }
 
+    }
+    
+    public void save() {
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/cars.txt";
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (Car car : this) {
+                String line = car.getCarID() + "," + car.getBrand().getBrandID() + "," + car.getColor() + "," + car.getFrameID() + "," + car.getEngineID();
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving cars: " + e.getMessage());
+        }
+    }
+
+    public static CarList load() {
+        String desktopPath = System.getProperty("user.home") + "/Desktop";
+        String filePath = desktopPath + "/cars.txt";
+        CarList carList = new CarList();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                String carID = parts[0];
+                String brandID = parts[1];
+                String color = parts[2];
+                String frameID = parts[3];
+                String engineID = parts[4];
+
+                // Assuming Brand.load() is available to load the brand object
+                Brand brand = Brand.load(brandID);
+
+                Car car = new Car(carID, brand, color, frameID, engineID);
+                carList.add(car);
+            }
+        } catch (IOException e) {
+            System.out.println("Error occurred while loading cars: " + e.getMessage());
+            return null;
+        }
+
+        return carList;
     }
 }
