@@ -15,7 +15,6 @@ public class CarManager {
 
         // Save the brands
         brandList.save();
-
         // Load the brands
         BrandList loadedBrandList = BrandList.load();
         if (loadedBrandList != null) {
@@ -55,7 +54,7 @@ public class CarManager {
                 System.out.println("------------------");
             }
         }
-    }
+   }
 //        Brlst.addBrand();
 //        Brlst.addBrand();
 //(*)Sơn: updateBrand() test fail. Thieu cho nhap vao brandID

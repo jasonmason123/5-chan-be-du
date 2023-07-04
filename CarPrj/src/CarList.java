@@ -43,10 +43,7 @@ public class CarList extends ArrayList<Car> {
     }
     
     public void save() {
-        String desktopPath = System.getProperty("user.home") + "/Desktop";
-        String filePath = desktopPath + "/cars.txt";
-        
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("cars.txt"))) {
             for (Car car : this) {
                 String line = car.getCarID() + "," + car.getBrand().getBrandID() + "," + car.getColor() + "," + car.getFrameID() + "," + car.getEngineID();
                 writer.write(line);
@@ -58,11 +55,12 @@ public class CarList extends ArrayList<Car> {
     }
 
     public static CarList load() {
-        String desktopPath = System.getProperty("user.home") + "/Desktop";
-        String filePath = desktopPath + "/cars.txt";
         CarList carList = new CarList();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try {
+            String projectDirectory = System.getProperty("user.dir");
+            String filePath = projectDirectory + File.separator + "cars.txt";
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");

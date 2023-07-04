@@ -123,8 +123,8 @@ public class BrandList extends ArrayList<Brand> {
     }
     
     public void save() {
-        String desktopPath = System.getProperty("user.home") + "/Desktop";
-        String filePath = desktopPath + "/brands.txt";
+        String projectDirectory = System.getProperty("user.dir");
+        String filePath = projectDirectory + File.separator + "brands.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Brand brand : this) {
                 String line = brand.getBrandID() + "," + brand.getBrandName() + "," + brand.getSoundBrand() + "," + brand.getPrice();
@@ -137,11 +137,12 @@ public class BrandList extends ArrayList<Brand> {
     }
 
     public static BrandList load() {
-        String desktopPath = System.getProperty("user.home") + "/Desktop";
-        String filePath = desktopPath + "/brands.txt";
         BrandList brandList = new BrandList();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try {
+            String projectDirectory = System.getProperty("user.dir");
+            String filePath = projectDirectory + File.separator + "brands.txt";
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
