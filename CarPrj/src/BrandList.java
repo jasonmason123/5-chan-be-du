@@ -46,33 +46,6 @@ public class BrandList extends ArrayList<Brand> {
             double Price = inp.inputPrice();
             pos.setPrice(Price);
             System.out.println("Update successful!");
-
-//            if (brandName.isEmpty() || soundBrand.isEmpty() || pos.getPrice() <= 0) {
-//                System.out.println("Invalid input! The brand name, sound brand, and price must not be blank, and the price must be greater than 0.");
-//            } else {
-//                System.out.print("Enter the new brand name: ");
-//                brandName = scanner.nextLine();
-//                // The brand name is not blank
-//                if (!brandName.isEmpty()) {
-//                    pos.setBrandName(brandName);
-//                }
-//
-//                // Receive new soundBrand
-//                System.out.print("Enter the new sound brand: ");
-//                soundBrand = scanner.nextLine();
-//                // The sound brand is not blank
-//                if (!soundBrand.isEmpty()) {
-//                    pos.setSoundBrand(soundBrand);
-//                }
-//
-//                // Receive new price
-//                System.out.print("Enter the new price: ");
-//                double price = scanner.nextDouble();
-//                // Price > 0
-//                if (price > 0) {
-//                    pos.setPrice(price);
-//                }
-//            }
         }
     }
 
