@@ -19,8 +19,8 @@ public class CarManager {
         crlst.add(c1);
         crlst.add(c2);
         
-        //crlst.searchByID();
-        System.out.println(crlst.searchID("1"));
+        crlst.searchByID();
+        //System.out.println(crlst.searchID("1"));
         //crlst.listCars();
         
 

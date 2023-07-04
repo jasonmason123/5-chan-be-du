@@ -20,7 +20,7 @@ public class CarList extends ArrayList<Car> {
         Inputter inp = new Inputter();
         System.out.println("Input the ID of the car that needs to be found:");
         Car result = searchID(inp.inputNotBlank());
-        if (result == null) System.out.println("(!)Brand not found!");
+        if (result == null) ;
         else System.out.println(result);
     }
     
@@ -33,6 +33,13 @@ public class CarList extends ArrayList<Car> {
         System.out.println("Car not found by Frame");
         return null;
     }
+    public void searchByFrame() {
+        Inputter inp = new Inputter();
+        System.out.println("Input the ID of the car that needs to be found:");
+        Car result = searchFrame(inp.inputNotBlank());
+        if (result == null) ;
+        else System.out.println(result);
+    }
 
     public Car searchEngine(String eID) {
         for (Car car : this) {
@@ -42,6 +49,14 @@ public class CarList extends ArrayList<Car> {
         }
         System.out.println("Car not found by Engine");
         return null;
+    }
+    
+    public void searchByEngine() {
+        Inputter inp = new Inputter();
+        System.out.println("Input the ID of the car that needs to be found:");
+        Car result = searchEngine(inp.inputNotBlank());
+        if (result == null) ;
+        else System.out.println(result);
     }
 
 //Duc Anh
