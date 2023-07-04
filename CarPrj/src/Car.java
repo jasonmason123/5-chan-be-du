@@ -70,34 +70,7 @@ public class Car implements Comparable<Car> {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-
-    public Car searchID(String carID) {
-        for (Car car : cars) {
-            if (car.getCarID().equals(carID)) {
-                return car;
-            }
-        }
-        System.out.println("Car not found by ID.");
-        return null;
-    }
-    public Car searchFrame(String fID) {
-    for (Car car : cars) {
-        if (car.getFrameID().equals(fID)) {
-            return car;
-        }
-    }
-    System.out.println("Car not found by Frame");
-    return null;
-}
-    public Car searchEngine(String eID) {
-    for (Car car : cars){
-        if (car.getEngineID().equals(eID)) {
-            return car;
-        }
-    }
-        System.out.println("Car not found by Engine");
-    return null;
-}
+    
     public void save() {
         String desktopPath = System.getProperty("user.home") + "/Desktop";
         String filePath = desktopPath + "/cars.txt";
@@ -138,7 +111,7 @@ public class Car implements Comparable<Car> {
     }
 
     public String screenString() {
-        return carID + brand.getBrandID() + color + frameID + engineID;
+        return carID + ", " + brand.getBrandID() + ", " + color + ", " + frameID + ", " + engineID;
     }
 
     @Override

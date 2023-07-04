@@ -4,34 +4,47 @@ import java.util.*;
 
 public class CarList extends ArrayList<Car> {
 
-    public int searchID(String carID) {
-
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).getCarID().equals(carID)) {
-                return i;
+//Duc Anh
+    
+    public Car searchID(String carID) {
+        for (Car car : this) {
+            if (car.getCarID().equals(carID)) {
+                return car;
             }
         }
-        return -1;
+        System.out.println("Car not found by ID.");
+        return null;
     }
-
-    public int searchFrame(String fID) {
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).getFrameID().equals(fID)) {
-                return i;
+    
+    public void searchByID() {
+        Inputter inp = new Inputter();
+        System.out.println("Input the ID of the car that needs to be found:");
+        Car result = searchID(inp.inputNotBlank());
+        if (result == null) System.out.println("(!)Brand not found!");
+        else System.out.println(result);
+    }
+    
+    public Car searchFrame(String fID) {
+        for (Car car : this) {
+            if (car.getFrameID().equals(fID)) {
+                return car;
             }
         }
-        return -1;
+        System.out.println("Car not found by Frame");
+        return null;
     }
 
-    public int searchEngine(String eID) {
-        for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).getEngineID().equals(eID)) {
-                return i;
+    public Car searchEngine(String eID) {
+        for (Car car : this) {
+            if (car.getEngineID().equals(eID)) {
+                return car;
             }
         }
-        return -1;
+        System.out.println("Car not found by Engine");
+        return null;
     }
 
+//Duc Anh
     public void listCars() {
         Collections.sort(this);
         int size = this.size();
@@ -39,9 +52,9 @@ public class CarList extends ArrayList<Car> {
             Car c = this.get(i);
             System.out.println(c.screenString());
         }
-
     }
-    
+
+//Khanh
     public void save() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("cars.txt"))) {
             for (Car car : this) {
@@ -54,6 +67,7 @@ public class CarList extends ArrayList<Car> {
         }
     }
 
+//Khanh
     public static CarList load() {
         CarList carList = new CarList();
 
