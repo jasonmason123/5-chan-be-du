@@ -19,4 +19,14 @@ public class Menu {
         } while (response < 0 || response > options.size());
         return options.get(response - 1);
     }
+    
+    
+    //tmt them vao vi chua hieu code tren
+    public static int getChoice(Object[] options) {
+        for (int i = 0; i < options.length; i++) {
+            System.out.println((i + 1) + " - " + options[i]);
+        }
+
+        return Inputter.inputInt("Choose 1.." + options.length + ": ", 1, options.length);
+    }
 }

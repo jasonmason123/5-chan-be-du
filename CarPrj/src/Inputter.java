@@ -44,4 +44,32 @@ public class Inputter {
         } while (ID.matches(pattern) == false);
         return ID;
     }
+    
+    public static int inputInt(String msg, int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        if (min > max) {
+            int temp = min;
+            min = max;
+            max = temp;
+        }
+
+        int data = Integer.MIN_VALUE;
+
+        while (true) {
+            try {
+                if (msg != null) {
+                    System.out.println(msg);
+                }
+
+                data = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+            }
+
+            if (data >= min && data <= max) {
+                break;
+            }
+        }
+
+        return data;
+    }
 }
