@@ -124,7 +124,7 @@ public class CarManager {
                     crlst.listCars();
                     break;
                 case 7:
-                    crlst.printCarBasedOnBrand();
+                    crlst.printBasedBrandName();
                     break;
                 case 8:
                     crlst.addCar(brandList);

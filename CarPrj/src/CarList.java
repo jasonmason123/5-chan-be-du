@@ -192,7 +192,7 @@ public class CarList extends ArrayList<Car> {
     }
 
     //tmt
-    public void printCarBasedOnBrand() {
+    public void printBasedBrandName() {
         int count = 0;
         Inputter inp = new Inputter();
         System.out.println("Enter the brand:");
