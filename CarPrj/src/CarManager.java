@@ -100,7 +100,7 @@ public class CarManager {
 
 
         do {
-            System.out.println("\nStudent managing Program");
+            System.out.println("\nCar Manager Program");
 
             choice = Menu.getChoice(options);
 
@@ -120,19 +120,22 @@ public class CarManager {
                     brandList.updateBrand();
                     break;
                 case 5:
+                    brandList.save();
                     break;
                 case 6:
+                    crlst.listCars();
                     break;
                 case 7:
                     break;
                 case 8:
-                    crlst.
+//                    crlst.
                     break;
                 case 9:
                     break;
                 case 10:
                     break;
                 case 11:
+                    crlst.save();
                     break;
                 default:
                     System.out.println("Bye!");
@@ -141,4 +144,3 @@ public class CarManager {
         } while (choice > 0 && choice < 6);
     }
     }
-}
