@@ -156,7 +156,7 @@ public class CarManager {
         menuOptions.add("Update a car based on its ID");
         menuOptions.add("Save cars to file, named cars.txt");
 
-        Object selectedOption = ref_getChoice(menuOptions);
-        System.out.println("Selected option: " + selectedOption);
+//        Object selectedOption = ref_getChoice(menuOptions);
+//        System.out.println("Selected option: " + selectedOption);
     }
 }

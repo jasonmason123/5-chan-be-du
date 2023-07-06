@@ -12,7 +12,7 @@ public class CarList extends ArrayList<Car> {
                 return car;
             }
         }
-        System.out.println("Car not found by ID.");
+//        System.out.println("Car not found by ID.");
         return null;
     }
     
@@ -113,37 +113,107 @@ public class CarList extends ArrayList<Car> {
         return carList;
     }
     
-    //tmt
+    //tmt ngu
     public boolean codeNotDuplicated(String code) {
         code = code.trim().toUpperCase();
         return searchID(code) != null;
     }
     
+    
     //tmt
-    public void addCar() {
-        Inputter inp = new Inputter();
-        Car newCr = new Car();
-        String newId;
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.println("Please input Car ID:");
-            newId = sc.nextLine();
-        } while (codeNotDuplicated(newId) == true);
-        newCr.setCarID(newId);
-
-        System.out.println("Car color:");
-        newCr.setColor(inp.inputNotBlank());
-
-        System.out.println("Please input Frame ID:");
-        newCr.setFrameID(inp.inputNotBlank());
+//    public void addCar() {
+//        Inputter inp = new Inputter();
+//        Car newCr = new Car();
+//        String newId;
+//        Scanner sc = new Scanner(System.in);
+//        do {
+//            System.out.println("Please input Car ID:");
+//            newId = sc.nextLine();
+//        } while (codeNotDuplicated(newId) == true);
+//        newCr.setCarID(newId);
+//
+//        System.out.println("Car color:");
+//        newCr.setColor(inp.inputNotBlank());
+//
+//        System.out.println("Please input Frame ID:");
+//        newCr.setFrameID(inp.inputNotBlank());
+//        
+//        System.out.println("Please input Engine ID:");
+//        newCr.setEngineID(inp.inputNotBlank());
         
-        System.out.println("Please input Engine ID:");
-        newCr.setEngineID(inp.inputNotBlank());
+    //---------------------------------Duong------------------------------------------------
+    public boolean checkDuplicated(String id){
+        for (Car car : this) 
+            if(car.getCarID().equals(id))
+                return true;
+        return false;
+    }
+    
+    public void addCar(){
+        String carID,color,frameID,engineID;
+        Inputter inp = new Inputter();
+        //nhap thong tin
+        System.out.print("Enter ID:\n");
+        do{
+            carID = inp.inputNotBlank();
+        }
+        while(checkDuplicated(carID));
 
+        System.out.println("Enter new color: ");
+        color = inp.inputNotBlank();
+        
+        System.out.println("Enter new frameID: ");
+        do{
+            frameID = inp.inputIDPattern("[sF][\\d]{4}");
+        }
+        while(checkDuplicated(frameID));
+        
+        System.out.println("Enter new engineID: ");
+        do{
+            engineID = inp.inputIDPattern("[sE][\\d]{4}");
+        }
+        while(checkDuplicated(engineID));
+        //tao object car moi 
+        Car newcar = new Car(carID,"brand",color,frameID,engineID);
+        // add new car to list
+        this.add(newcar);
+        System.out.println("Car with ID "+carID+ " has been added");
+    }
+    
+    public void removeCar(){
+        Inputter inp = new Inputter();
+        System.out.print("Enter the car ID for remove:\n");
+        String carID = inp.inputNotBlank();
+        Car car = searchID(carID);
+        if (car == null)
+            System.out.println("ID: "+carID+" doesn't exist");
+        else{
+            this.remove(car);
+            System.out.println("Car with ID: "+ carID + " has been removed");
+        } 
+    }
+    
+    public void updateCar(){
+        Inputter inp = new Inputter();
+        System.out.print("Enter the car ID for update:\n");
+        String carID = inp.inputNotBlank();
+        Car car = searchID(carID);
+        if (car == null)
+            System.out.println("ID: "+carID+" doesn't exist");
+        else{
+            System.out.println("Choose new brand: ");
+            car.setBrand(new BrandList.getUserChoice());
+            System.out.println("Enter new color: ");
+            car.setColor(inp.inputNotBlank());
+            System.out.println("Enter new frameID: ");
+            car.setFrameID(inp.inputNotBlank());
+            System.out.println("Enter new engineID: ");
+            car.setEngineID(inp.inputNotBlank());
+            System.out.println("Car with ID: "+ carID + " has been updated");
+        } 
+    }
 //        newCr.setBrand(inp.inputNotBlank());
 // Còn setbrand cho newCar nma dang gap loi
 
-        this.add(newCr);
-        System.out.println("Car added succesfully!");
-    }
+
 }
