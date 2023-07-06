@@ -21,7 +21,7 @@ public class Menu {
     }
     
     
-    //tmt them vao vi chua hieu code tren
+    //tmt them vao vi khong biet dung code tren
     public static int getChoice(Object[] options) {
         for (int i = 0; i < options.length; i++) {
             System.out.println((i + 1) + " - " + options[i]);

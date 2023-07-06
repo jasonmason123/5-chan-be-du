@@ -112,4 +112,38 @@ public class CarList extends ArrayList<Car> {
 
         return carList;
     }
+    
+    //tmt
+    public boolean codeNotDuplicated(String code) {
+        code = code.trim().toUpperCase();
+        return searchID(code) != null;
+    }
+    
+    //tmt
+    public void addCar() {
+        Inputter inp = new Inputter();
+        Car newCr = new Car();
+        String newId;
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println("Please input Car ID:");
+            newId = sc.nextLine();
+        } while (codeNotDuplicated(newId) == true);
+        newCr.setCarID(newId);
+
+        System.out.println("Car color:");
+        newCr.setColor(inp.inputNotBlank());
+
+        System.out.println("Please input Frame ID:");
+        newCr.setFrameID(inp.inputNotBlank());
+        
+        System.out.println("Please input Engine ID:");
+        newCr.setEngineID(inp.inputNotBlank());
+
+//        newCr.setBrand(inp.inputNotBlank());
+// Còn setbrand cho newCar nma dang gap loi
+
+        this.add(newCr);
+        System.out.println("Car added succesfully!");
+    }
 }
