@@ -21,12 +21,12 @@ public class Menu {
     }
     
     
-    //tmt them vao vi khong biet dung code tren
-    public static int getChoice(Object[] options) {
+    //tmt
+    public static int array_getChoice(Object[] options) {
         for (int i = 0; i < options.length; i++) {
             System.out.println((i + 1) + " - " + options[i]);
         }
 
-        return Inputter.inputInt("Please choose an option 1..." + options.length + ": ", 1, options.length);
+        return Inputter.inputInt("Please choose an option 1 to " + options.length + ": ", 1, options.length);
     }
 }

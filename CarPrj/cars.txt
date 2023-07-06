@@ -1,2 +1,2 @@
-1, 1, Red, Frame 1, Engine 1
-2, 1, Blue, Frame 2, Engine 2
+1, 1, red, F0001, E0001
+2, 2, blue, F0002, E0002
