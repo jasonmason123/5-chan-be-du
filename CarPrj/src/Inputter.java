@@ -45,6 +45,7 @@ public class Inputter {
         return ID;
     }
     
+    //tmt them vao de chay thu cai menu
     public static int inputInt(String msg, int min, int max) {
         Scanner sc = new Scanner(System.in);
         if (min > max) {
