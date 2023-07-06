@@ -101,6 +101,7 @@ public class CarManager {
 
         do {
             System.out.println("\nCar Manager Program");
+            System.out.println("=========================MENU=========================");
 
             choice = Menu.getChoice(options);
 

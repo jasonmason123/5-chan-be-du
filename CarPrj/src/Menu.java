@@ -27,6 +27,6 @@ public class Menu {
             System.out.println((i + 1) + " - " + options[i]);
         }
 
-        return Inputter.inputInt("Choose 1.." + options.length + ": ", 1, options.length);
+        return Inputter.inputInt("Please choose an option 1..." + options.length + ": ", 1, options.length);
     }
 }
