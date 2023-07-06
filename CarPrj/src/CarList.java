@@ -126,14 +126,18 @@ public class CarList extends ArrayList<Car> {
         return false;
     }
 
-    public void addCar() {
+    public void addCar(BrandList brlst) {
         String carID, color, frameID, engineID;
+        Brand brand;
         Inputter inp = new Inputter();
         //nhap thong tin
         System.out.print("Enter ID:\n");
         do {
             carID = inp.inputNotBlank();
         } while (checkDuplicated(carID));
+        
+        System.out.println("Choose brand:");
+        brand = brlst.getUserChoice();
 
         System.out.println("Enter new color: ");
         color = inp.inputNotBlank();
@@ -148,7 +152,7 @@ public class CarList extends ArrayList<Car> {
             engineID = inp.inputIDPattern("[sE][\\d]{4}");
         } while (checkDuplicated(engineID));
         //tao object car moi 
-        Car newcar = new Car(carID, "brand", color, frameID, engineID);
+        Car newcar = new Car(carID, brand, color, frameID, engineID);
         // add new car to list
         this.add(newcar);
         System.out.println("Car with ID " + carID + " has been added");
@@ -167,7 +171,7 @@ public class CarList extends ArrayList<Car> {
         }
     }
 
-    public void updateCar() {
+    public void updateCar(BrandList brlst) {
         Inputter inp = new Inputter();
         System.out.print("Enter the car ID for update:\n");
         String carID = inp.inputNotBlank();
@@ -176,7 +180,7 @@ public class CarList extends ArrayList<Car> {
             System.out.println("ID: " + carID + " doesn't exist");
         } else {
             System.out.println("Choose new brand: ");
-            car.setBrand(new BrandList.getUserChoice());
+            car.setBrand(brlst.getUserChoice());
             System.out.println("Enter new color: ");
             car.setColor(inp.inputNotBlank());
             System.out.println("Enter new frameID: ");

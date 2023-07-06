@@ -12,6 +12,18 @@ public class Menu {
         return response;
     }
     
+//Overloading method int_getChoice
+    public int int_getChoice (Object[] options) {
+        int response;
+        for (int i=0; i<options.length; i++) {
+            System.out.println((i+1) + "-" + options[i]);
+        }
+        System.out.println("Please choose an option 1..." + options.length + ":");
+        Scanner sc = new Scanner(System.in);
+        response = sc.nextInt();
+        return response;
+    }
+    
     public Object ref_getChoice (ArrayList options) {
         int response;
         do {
@@ -20,13 +32,4 @@ public class Menu {
         return options.get(response - 1);
     }
     
-    
-    //tmt
-    public static int array_getChoice(Object[] options) {
-        for (int i = 0; i < options.length; i++) {
-            System.out.println((i + 1) + " - " + options[i]);
-        }
-
-        return Inputter.inputInt("Please choose an option 1 to " + options.length + ": ", 1, options.length);
-    }
 }

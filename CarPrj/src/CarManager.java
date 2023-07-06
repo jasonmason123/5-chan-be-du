@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.lang.*;
 
@@ -81,7 +80,7 @@ public class CarManager {
 //        Brlst.updateBrand();
 
 //tmt's menu
-    String[] options = {
+        String[] options = {
             "List all brands",
             "Add a new brand",
             "Search a brand based on its ID",
@@ -93,17 +92,15 @@ public class CarManager {
             "Remove a car based on its ID",
             "Update a car based on its ID",
             "Save cars to file, named cars.txt",
-            
         };
-
         int choice = 0;
-
+        Menu mn = new Menu();
 
         do {
             System.out.println("\nCar Manager Program");
             System.out.println("=============================MENU=============================");
 
-            choice = Menu.array_getChoice(options);
+            choice = mn.int_getChoice(options);
 
             switch (choice) {
                 case 1:
@@ -130,19 +127,19 @@ public class CarManager {
                     crlst.printCarBasedOnBrand();
                     break;
                 case 8:
-                    crlst.addCar();
+                    crlst.addCar(brandList);
                     break;
                 case 9:
                     crlst.removeCar();
                     break;
                 case 10:
-                    crlst.updateCar();
+                    crlst.updateCar(brandList);
                     break;
                 case 11:
                     crlst.save();
                     break;
                 default:
-                    System.out.println("PROGRAM CLOSES!");
+                    System.out.println("PROGRAM CLOSED!");
                     break;
             }
         } while (choice > 0 && choice < 12);
