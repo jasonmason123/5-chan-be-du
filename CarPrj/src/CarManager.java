@@ -16,7 +16,7 @@ public class CarManager {
 
         Car c1 = new Car("1", brand1, "red", "F0001", "E0001");
         Car c2 = new Car("2", brand2, "blue", "F0002", "E0002");
-        CarList crlst = new CarList();
+        CarList crlst = new CarList(brandList);
         crlst.add(c1);
         crlst.add(c2);
 //        
@@ -127,13 +127,13 @@ public class CarManager {
                     crlst.printBasedBrandName();
                     break;
                 case 8:
-                    crlst.addCar(brandList);
+                    crlst.addCar();
                     break;
                 case 9:
                     crlst.removeCar();
                     break;
                 case 10:
-                    crlst.updateCar(brandList);
+                    crlst.updateCar();
                     break;
                 case 11:
                     crlst.save();

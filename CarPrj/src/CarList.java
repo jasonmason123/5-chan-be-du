@@ -3,6 +3,15 @@ import java.io.*;
 import java.util.*;
 
 public class CarList extends ArrayList<Car> {
+//(*)Son
+    BrandList bList;
+    
+    public CarList() {
+    }
+
+    public CarList(BrandList bList) {
+        this.bList = bList;
+    }
 
 //Duc Anh
     public Car searchID(String carID) {
@@ -88,7 +97,7 @@ public class CarList extends ArrayList<Car> {
 //Khanh
     public static CarList load() {
         CarList carList = new CarList();
-
+        
         try {
             String projectDirectory = System.getProperty("user.dir");
             String filePath = projectDirectory + File.separator + "cars.txt";
@@ -126,7 +135,7 @@ public class CarList extends ArrayList<Car> {
         return false;
     }
 
-    public void addCar(BrandList brlst) {
+    public void addCar() {
         String carID, color, frameID, engineID;
         Brand brand;
         Inputter inp = new Inputter();
@@ -137,19 +146,19 @@ public class CarList extends ArrayList<Car> {
         } while (checkDuplicated(carID));
         
         System.out.println("Choose brand:");
-        brand = brlst.getUserChoice();
+        brand = bList.getUserChoice();
 
         System.out.println("Enter new color: ");
         color = inp.inputNotBlank();
 
         System.out.println("Enter new frameID: ");
         do {
-            frameID = inp.inputIDPattern("[sF][\\d]{4}");
+            frameID = inp.inputIDPattern("[fF][\\d]{4}");
         } while (checkDuplicated(frameID));
 
         System.out.println("Enter new engineID: ");
         do {
-            engineID = inp.inputIDPattern("[sE][\\d]{4}");
+            engineID = inp.inputIDPattern("[eE][\\d]{4}");
         } while (checkDuplicated(engineID));
         //tao object car moi 
         Car newcar = new Car(carID, brand, color, frameID, engineID);
@@ -171,7 +180,7 @@ public class CarList extends ArrayList<Car> {
         }
     }
 
-    public void updateCar(BrandList brlst) {
+    public void updateCar() {
         Inputter inp = new Inputter();
         System.out.print("Enter the car ID for update:\n");
         String carID = inp.inputNotBlank();
@@ -180,7 +189,7 @@ public class CarList extends ArrayList<Car> {
             System.out.println("ID: " + carID + " doesn't exist");
         } else {
             System.out.println("Choose new brand: ");
-            car.setBrand(brlst.getUserChoice());
+            car.setBrand(bList.getUserChoice());
             System.out.println("Enter new color: ");
             car.setColor(inp.inputNotBlank());
             System.out.println("Enter new frameID: ");
