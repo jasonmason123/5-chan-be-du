@@ -143,21 +143,5 @@ public class CarManager {
                     break;
             }
         } while (choice > 0 && choice < 12);
-
-//        ArrayList<Object> menuOptions = new ArrayList<>();
-//        menuOptions.add("List all brands");
-//        menuOptions.add("Add a new brand");
-//        menuOptions.add("Search a brand based on its ID");
-//        menuOptions.add("Update a brand");
-//        menuOptions.add("Save brands to the file, named brands.txt");
-//        menuOptions.add("List all cars in ascending order of brand names");
-//        menuOptions.add("List cars based on a part of an input brand name");
-//        menuOptions.add("Add a car");
-//        menuOptions.add("Remove a car based on its ID");
-//        menuOptions.add("Update a car based on its ID");
-//        menuOptions.add("Save cars to file, named cars.txt");
-
-//        Object selectedOption = ref_getChoice(menuOptions);
-//        System.out.println("Selected option: " + selectedOption);
     }
 }

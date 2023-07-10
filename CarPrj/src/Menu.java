@@ -32,4 +32,12 @@ public class Menu {
         return options.get(response - 1);
     }
     
+    public Object ref_getChoice (Object[] options) {
+        int response;
+        do {
+            response = int_getChoice(options);
+        } while (response < 0 || response > options.length);
+        return options[response - 1];
+    }
+    
 }
