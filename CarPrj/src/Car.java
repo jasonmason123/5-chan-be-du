@@ -12,7 +12,6 @@ public class Car implements Comparable<Car> {
             frameID,
             engineID;
             Brand brand;
-            List<Car> cars;
 
     public Car() {
     }
@@ -83,28 +82,6 @@ public class Car implements Comparable<Car> {
         }
     }
 
-    public static Car load(String carID) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("cars.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(", ");
-                String loadedCarID = parts[0];
-                String brandID = parts[1];
-                String color = parts[2];
-                String frameID = parts[3];
-                String engineID = parts[4];
-
-                if (loadedCarID.equals(carID)) {
-                    Brand brand = Brand.load(brandID);
-                    return new Car(loadedCarID, brand, color, frameID, engineID);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error occurred while loading cars: " + e.getMessage());
-        }
-
-        return null; // Car not found
-    }
     @Override
     public String toString() {
         return "CarID=" + carID + ", brand=" + brand.getBrandID() + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID;

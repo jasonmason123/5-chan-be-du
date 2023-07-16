@@ -74,9 +74,8 @@ public class Brand {
         return "BrandID=" + brandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ": price=" + price;
     }
 
-    int compareTo(Brand brand) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+//    int compareTo(Brand brand) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+     
 }

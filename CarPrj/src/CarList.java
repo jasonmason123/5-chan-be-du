@@ -144,7 +144,7 @@ public class CarList extends ArrayList<Car> {
         do {
             carID = inp.inputNotBlank();
         } while (checkDuplicated(carID));
-        
+
         System.out.println("Choose brand:");
         brand = bList.getUserChoice();
 
@@ -212,9 +212,10 @@ public class CarList extends ArrayList<Car> {
                 System.out.println(car.screenString());
                 count++;
             }
-            if (count == 0) {
+            
+        }
+        if (count == 0) {
                 System.out.println("No car is detected!");
             }
-        }
     }
 }
