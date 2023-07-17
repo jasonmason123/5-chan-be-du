@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.lang.*;
 
@@ -5,23 +6,11 @@ public class CarManager {
 
     public static void main(String[] args) {
 //(*)Sơn: test method update Brand() va getUserChoice()
-        Brand brand1 = new Brand("BR1", "Brand 1", "Sound 1", 1000.0);
-        Brand brand2 = new Brand("BR2", "Brand 2", "Sound 2", 2000.0);
-        Brand brand3 = new Brand("BR3", "Brand 3", "Sound 3", 3000.0);
-        Brand brand4 = new Brand("BR4", "Toyota", "Sony", 4000.0);
-
-        BrandList brandList = new BrandList();
-        brandList.add(brand1);
-        brandList.add(brand2);
-        brandList.add(brand3);
-
-        Car c1 = new Car("C01", brand1, "red", "F0001", "E0001");
-        Car c2 = new Car("C02", brand2, "blue", "F0002", "E0002");
-        Car c3 = new Car("C03", brand2, "grey", "F0003", "E0003");
-        CarList crlst = new CarList(brandList);
-        crlst.add(c1);
-        crlst.add(c2);
-
+        
+        BrandList brandList = new BrandList().load();
+       
+        CarList crlst = new CarList(brandList).load();
+        
 //tmt's menu
         String[] options = {
             "List all brands",
@@ -34,8 +23,7 @@ public class CarManager {
             "Add a car",
             "Remove a car based on its ID",
             "Update a car based on its ID",
-            "Save cars to file, named cars.txt",
-        };
+            "Save cars to file, named cars.txt",};
         int choice = 0;
         Menu mn = new Menu();
 
