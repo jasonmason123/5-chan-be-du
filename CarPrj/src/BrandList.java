@@ -117,9 +117,7 @@ public class BrandList extends ArrayList<Brand> {
         }
     }
 
-    public static BrandList load() {
-        BrandList brandList = new BrandList();
-
+    public void load() {
         try {
             String projectDirectory = System.getProperty("user.dir");
             String filePath = projectDirectory + File.separator + "brands.txt";
@@ -133,13 +131,10 @@ public class BrandList extends ArrayList<Brand> {
                 double price = Double.parseDouble(parts[3]);
 
                 Brand brand = new Brand(id, brandName, soundBrand, price);
-                brandList.add(brand);
+                this.add(brand);
             }
         } catch (IOException e) {
             System.out.println("Error occurred while loading brands: " + e.getMessage());
-            return null;
         }
-
-        return brandList;
     }
 }

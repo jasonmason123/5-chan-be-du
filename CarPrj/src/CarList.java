@@ -20,7 +20,7 @@ public class CarList extends ArrayList<Car> {
                 return car;
             }
         }
-//        System.out.println("Car not found by ID.");
+        System.out.println("Car not found by ID.");
         return null;
     }
 
@@ -39,13 +39,13 @@ public class CarList extends ArrayList<Car> {
                 return car;
             }
         }
-        System.out.println("Car not found by Frame");
+        System.out.println("(!)Car not found by Frame!");
         return null;
     }
 
     public void searchByFrame() {
         Inputter inp = new Inputter();
-        System.out.println("Input the ID of the car that needs to be found:");
+        System.out.println("Input the frame ID of the car that needs to be found:");
         Car result = searchFrame(inp.inputNotBlank());
         if (result == null) ; else {
             System.out.println(result);
@@ -58,13 +58,13 @@ public class CarList extends ArrayList<Car> {
                 return car;
             }
         }
-        System.out.println("Car not found by Engine");
+        System.out.println("(!)Car not found by Engine!");
         return null;
     }
 
     public void searchByEngine() {
         Inputter inp = new Inputter();
-        System.out.println("Input the ID of the car that needs to be found:");
+        System.out.println("Input the engine ID of the car that needs to be found:");
         Car result = searchEngine(inp.inputNotBlank());
         if (result == null) ; else {
             System.out.println(result);
@@ -95,9 +95,7 @@ public class CarList extends ArrayList<Car> {
     }
 
 //Khanh
-    public static CarList load() {
-        CarList carList = new CarList();
-        
+    public void load() {
         try {
             String projectDirectory = System.getProperty("user.dir");
             String filePath = projectDirectory + File.separator + "cars.txt";
@@ -115,25 +113,14 @@ public class CarList extends ArrayList<Car> {
                 Brand brand = Brand.load(brandID);
 
                 Car car = new Car(carID, brand, color, frameID, engineID);
-                carList.add(car);
+                this.add(car);
             }
         } catch (IOException e) {
             System.out.println("Error occurred while loading cars: " + e.getMessage());
-            return null;
         }
-
-        return carList;
     }
 
     //---------------------------------Duong------------------------------------------------
-    public boolean checkDuplicatedID(String id) {
-        for (Car car : this) {
-            if (car.getCarID().equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
     
     public boolean checkDuplicatedfr(String id) {
         for (Car car : this) {
@@ -161,7 +148,7 @@ public class CarList extends ArrayList<Car> {
         System.out.print("Enter ID:\n");
         do {
             carID = inp.inputNotBlank();
-        } while (checkDuplicatedID(carID));
+        } while (searchID(carID) != null);
 
         System.out.println("Choose brand:");
         brand = bList.getUserChoice();
@@ -172,12 +159,12 @@ public class CarList extends ArrayList<Car> {
         System.out.println("Enter new frameID: ");
         do {
             frameID = inp.inputIDPattern("[fF][\\d]{5}");
-        } while (checkDuplicatedfr(frameID));
+        } while (searchFrame(frameID) != null);
 
         System.out.println("Enter new engineID: ");
         do {
             engineID = inp.inputIDPattern("[eE][\\d]{5}");
-        } while (checkDuplicatedeg(engineID));
+        } while (searchEngine(engineID) != null);
         //tao object car moi 
         Car newcar = new Car(carID, brand, color, frameID, engineID);
         // add new car to list
@@ -211,19 +198,19 @@ public class CarList extends ArrayList<Car> {
             car.setBrand(bList.getUserChoice());
             System.out.println("Enter new color: ");
             car.setColor(inp.inputNotBlank());
-            
+
             System.out.println("Enter new frameID: ");
             do {
-            frameID = inp.inputIDPattern("[fF][\\d]{5}");
+                frameID = inp.inputIDPattern("[fF][\\d]{5}");
             } while (checkDuplicatedfr(frameID));
             car.setFrameID(frameID);
-            
+
             System.out.println("Enter new engineID: ");
             do {
-            engineID = inp.inputIDPattern("[eE][\\d]{5}");
+                engineID = inp.inputIDPattern("[eE][\\d]{5}");
             } while (checkDuplicatedeg(engineID));
             car.setEngineID(engineID);
-            
+
             System.out.println("Car with ID: " + carID + " has been updated");
         }
     }

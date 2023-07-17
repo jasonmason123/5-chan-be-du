@@ -7,9 +7,18 @@ public class CarManager {
     public static void main(String[] args) {
 //(*)Sơn: test method update Brand() va getUserChoice()
         
-        BrandList brandList = new BrandList().load();
+        BrandList brandList = new BrandList();
+        brandList.load();
        
-        CarList crlst = new CarList(brandList).load();
+        CarList crlst = new CarList(brandList);
+        crlst.load();
+        System.out.println(crlst);
+
+//        BrandList brandList0 = new BrandList();
+//        brandList0.add(new Brand("B7-2018", "BMW", "ImageLine", 1000));
+//        brandList0.add(new Brand("B7-2019", "Toyota", "Sony", 2000));
+//        System.out.println(brandList0);
+//        CarList crlst0 = new CarList(brandList);
         
 //tmt's menu
         String[] options = {
