@@ -126,9 +126,27 @@ public class CarList extends ArrayList<Car> {
     }
 
     //---------------------------------Duong------------------------------------------------
-    public boolean checkDuplicated(String id) {
+    public boolean checkDuplicatedID(String id) {
         for (Car car : this) {
             if (car.getCarID().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkDuplicatedfr(String id) {
+        for (Car car : this) {
+            if (car.getFrameID().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean checkDuplicatedeg(String id) {
+        for (Car car : this) {
+            if (car.getEngineID().equals(id)) {
                 return true;
             }
         }
@@ -143,7 +161,7 @@ public class CarList extends ArrayList<Car> {
         System.out.print("Enter ID:\n");
         do {
             carID = inp.inputNotBlank();
-        } while (checkDuplicated(carID));
+        } while (checkDuplicatedID(carID));
 
         System.out.println("Choose brand:");
         brand = bList.getUserChoice();
@@ -153,13 +171,13 @@ public class CarList extends ArrayList<Car> {
 
         System.out.println("Enter new frameID: ");
         do {
-            frameID = inp.inputIDPattern("[fF][\\d]{4}");
-        } while (checkDuplicated(frameID));
+            frameID = inp.inputIDPattern("[fF][\\d]{5}");
+        } while (checkDuplicatedfr(frameID));
 
         System.out.println("Enter new engineID: ");
         do {
-            engineID = inp.inputIDPattern("[eE][\\d]{4}");
-        } while (checkDuplicated(engineID));
+            engineID = inp.inputIDPattern("[eE][\\d]{5}");
+        } while (checkDuplicatedeg(engineID));
         //tao object car moi 
         Car newcar = new Car(carID, brand, color, frameID, engineID);
         // add new car to list
@@ -182,6 +200,7 @@ public class CarList extends ArrayList<Car> {
 
     public void updateCar() {
         Inputter inp = new Inputter();
+        String frameID, engineID;
         System.out.print("Enter the car ID for update:\n");
         String carID = inp.inputNotBlank();
         Car car = searchID(carID);
@@ -192,10 +211,19 @@ public class CarList extends ArrayList<Car> {
             car.setBrand(bList.getUserChoice());
             System.out.println("Enter new color: ");
             car.setColor(inp.inputNotBlank());
+            
             System.out.println("Enter new frameID: ");
-            car.setFrameID(inp.inputNotBlank());
+            do {
+            frameID = inp.inputIDPattern("[fF][\\d]{5}");
+            } while (checkDuplicatedfr(frameID));
+            car.setFrameID(frameID);
+            
             System.out.println("Enter new engineID: ");
-            car.setEngineID(inp.inputNotBlank());
+            do {
+            engineID = inp.inputIDPattern("[eE][\\d]{5}");
+            } while (checkDuplicatedeg(engineID));
+            car.setEngineID(engineID);
+            
             System.out.println("Car with ID: " + carID + " has been updated");
         }
     }

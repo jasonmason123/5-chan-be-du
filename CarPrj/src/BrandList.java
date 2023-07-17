@@ -78,7 +78,7 @@ public class BrandList extends ArrayList<Brand> {
         System.out.println("Brand added succesfully!");
     }
 
-    public void listBrands() {
+    public void listBrands(){ 
         if (this.isEmpty() == true) {
             System.out.println("Brand list is empty!");
         } else {
