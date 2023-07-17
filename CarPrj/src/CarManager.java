@@ -23,7 +23,8 @@ public class CarManager {
             "Add a car",
             "Remove a car based on its ID",
             "Update a car based on its ID",
-            "Save cars to file, named cars.txt",};
+            "Save cars to file, named cars.txt",
+                "Exit"};
         int choice = 0;
         Menu mn = new Menu();
 
