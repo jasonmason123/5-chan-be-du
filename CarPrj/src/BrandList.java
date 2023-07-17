@@ -1,5 +1,6 @@
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class BrandList extends ArrayList<Brand> {
@@ -82,8 +83,15 @@ public class BrandList extends ArrayList<Brand> {
         if (this.isEmpty() == true) {
             System.out.println("Brand list is empty!");
         } else {
+            System.out.println("ID\t\t  Brand Name\t\t    Sound Brand\t\tPrice");
+            System.out.println("---------------------------------------------------------------------------------");
+            DecimalFormat decimalFormat = new DecimalFormat("#,###.###");
             for (Brand brand : this) {
-                System.out.println(brand);
+                System.out.printf("%-12s %-30s %-20s %s%n",
+                        brand.getBrandID(),
+                        brand.getBrandName(),
+                        brand.getSoundBrand(),
+                        decimalFormat.format(brand.getPrice()));
             }
         }
     }

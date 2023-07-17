@@ -88,8 +88,18 @@ public class Car implements Comparable<Car> {
     }
 
     public String screenString() {
-        return carID + ", " + brand.getBrandID() + ", " + color + ", " + frameID + ", " + engineID;
-    }
+    String brandName = brand.getBrandName(); // Assuming the Brand class has a getBrandName() method.
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("Car ID: ").append(carID)
+      .append("\nBrand: ").append(brandName)
+      .append("\nColor: ").append(color)
+      .append("\nFrame ID: ").append(frameID)
+      .append("\nEngine ID: ").append(engineID)
+      .append("\n-----------------------------------\n");
+
+    return sb.toString();
+}
 
     @Override
     public int compareTo(Car otherCar) {
